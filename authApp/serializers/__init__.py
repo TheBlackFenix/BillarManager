@@ -1,4 +1,4 @@
-from .userSerializer import userSerializer
+from .userSerializer import UserSerializer
 from .estadoSerializer import  EstadoSerializer
 from .tipoMesaSerializer import TipoMesaSerializer
 from .clienteSerializer import ClienteSerializer

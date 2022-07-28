@@ -1,5 +1,3 @@
-from msilib.schema import tables
-import tarfile
 from rest_framework import serializers
 from authApp.models.tarifa import Tarifa
 

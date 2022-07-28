@@ -1,5 +1,3 @@
-from pyexpat import model
-from tarfile import REGULAR_TYPES
 from django.db import models
 from .tarifa import Tarifa
 from .cliente import Cliente
