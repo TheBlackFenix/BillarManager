@@ -21,12 +21,12 @@ class TiempoView(APIView):
     
 class TiempoDetail(APIView):
     def get(self,request, pk=None):
-        tiempo = Tiempo.objects.filter(idTipo = pk).first()
+        tiempo = Tiempo.objects.filter(idTiempo = pk).first()
         Tiempo_serializer = TiempoSerializer(tiempo)
         return Response(Tiempo_serializer.data)
 
     def put(self,request, pk= None):
-        tiempo = Tiempo.objects.filter(idTipo = pk).first()
+        tiempo = Tiempo.objects.filter(idTiempo = pk).first()
         mesa_serializer = TiempoSerializer(tiempo, data = request.data)
         if mesa_serializer.is_valid():
             mesa_serializer.save()
@@ -34,7 +34,7 @@ class TiempoDetail(APIView):
         return Response(mesa_serializer.errors)
     
     def delete(self,request,pk):
-        tiempo = Tiempo.objects.filter(idTipo = pk).first()
+        tiempo = Tiempo.objects.filter(idTiempo = pk).first()
         msg = f'se elimino la tiempo {tiempo.idTiempo}, Observaciones = {tiempo.Observaciones}'
         tiempo.delete()
         return Response(msg)

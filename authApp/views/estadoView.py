@@ -1,5 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from authApp.models import estado
 from authApp.serializers.estadoSerializer import EstadoSerializer
 from authApp.models.estado import Estado
 
@@ -7,8 +8,8 @@ from authApp.models.estado import Estado
 class EstadoView(APIView):
     serializer_class = Estado
     def get(self, request):
-        serializer = Estado.objects.all()
-        estado_serializer = EstadoSerializer(serializer, many = True)
+        estado = Estado.objects.all()
+        estado_serializer = EstadoSerializer(estado, many = True)
         return Response(estado_serializer.data)
     
     def post(self, request):
@@ -21,16 +22,16 @@ class EstadoView(APIView):
 class EstadoDetail(APIView):
     def get(self,request, pk=None):
         estado = Estado.objects.filter(idEstado = pk).first()
-        Estado_serializer = EstadoSerializer(estado)
-        return Response(Estado_serializer.data)
+        estado_serializer = EstadoSerializer(estado)
+        return Response(estado_serializer.data)
 
     def put(self,request, pk= None):
         estado = Estado.objects.filter(idEstado = pk).first()
-        mesa_serializer = EstadoSerializer(estado, data = request.data)
-        if mesa_serializer.is_valid():
-            mesa_serializer.save()
+        estado_serializer = EstadoSerializer(estado, data = request.data)
+        if estado_serializer.is_valid():
+            estado_serializer.save()
             return Response("Registro Actualizado")
-        return Response(mesa_serializer.errors)
+        return Response(estado_serializer.errors)
     
     def delete(self,request,pk):
         estado = Estado.objects.filter(idEstado = pk).first()
